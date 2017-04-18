@@ -36,6 +36,7 @@ class ArticleListController extends Controller
     public function store(Request $request)
     {
         $articles = Article::where('source', $request->source)->where('is_read', false)->take(50)->orderBy('releasedate', 'desc')->get();
+        Article::where('source', $request->source)->where('is_read', false)->take(50)->update(['is_read'=>true]);
         return response()->json($articles);
     }
 
