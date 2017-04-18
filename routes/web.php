@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('user/login','UserController@login');
+
+Route::resource('article_list','ArticleListController');
+
+Route::get('word/search/{word}', 'WordController@search');
+Route::resource('word','WordController');
+
+Route::resource('tag','TagController');

@@ -19,8 +19,9 @@ class CreateArticleTable extends Migration
             $table->text('title');
             $table->text('tags')->nullable();
             $table->text('source');
-            $table->string('category');
+            $table->string('category')->nullable();
             $table->dateTime('releasedate')->nullable();
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
