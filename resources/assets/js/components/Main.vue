@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div>
-                    <el-button type="primary">完成</el-button>
+                    <el-button type="primary" @click="finish">完成</el-button>
                 </div>
             </el-card>
         </el-col>
@@ -104,6 +104,9 @@
                             console.log(error);
                             vm.$message.error('添加失败');
                         });
+            },
+            finish:function () {
+                this.articles=[];
             }
         }
     }
