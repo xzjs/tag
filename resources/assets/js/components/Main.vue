@@ -23,6 +23,15 @@
         </el-col>
         <el-col :span="12">
             <el-form label-width="100px" class="form">
+                <el-form-item label="雷锋网">
+                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[0]" class="progress"></el-progress>
+                </el-form-item>
+                <el-form-item label="百度百家">
+                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[1]" class="progress"></el-progress>
+                </el-form-item>
+                <el-form-item label="开发者头条">
+                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[2]" class="progress"></el-progress>
+                </el-form-item>
                 <el-form-item label="主题词" required>
                     <el-input class="input" v-model="key"></el-input>
                     <el-button type="primary" @click="getWord">提交</el-button>
@@ -53,7 +62,12 @@
                 articles: [],
                 key: null,
                 word: null,
-                tag: null
+                tag: null,
+                progress: {
+                    'leiphone.com': [0,1],
+                    'baijia.baidu.com': [0,1],
+                    'toutiao.io': [0,1]
+                }
             }
         },
         computed: {
@@ -64,8 +78,18 @@
                 return [];
             },
             user: function () {
-//                return this.$store.state.user;
-                return {id:1};
+                return this.$store.state.user;
+            },
+            percent:function () {
+                var arr=[];
+                for(var key in this.progress){
+                    if(this.progress[key][1]==0){
+                        arr.push(0);
+                    }else{
+                        arr.push(this.progress[key][0]/this.progress[key][1]*100);
+                    }
+                }
+                return arr;
             }
         },
         methods: {
@@ -74,9 +98,13 @@
                 axios.post('article_list', {source: this.value})
                         .then(function (response) {
                             vm.articles = response.data;
+                            if(vm.articles.length==0){
+                                vm.$message.error('已经没有任务了');
+                            }
                         })
                         .catch(function (error) {
                             console.log(error);
+                            vm.$message.error('拉取任务失败');
                         })
             },
             getWord: function () {
@@ -93,9 +121,10 @@
                 var vm = this;
                 axios.post('tag', {tag: this.tag, user_id: this.user.id, word_id: this.word.id})
                         .then(function (response) {
+                            console.log(response.data);
                             if (response.data == true) {
                                 vm.word.tags.push({tag: vm.tag});
-                                vm.tag=null;
+                                vm.tag = null;
                             } else {
                                 vm.$message.error('添加失败');
                             }
@@ -105,9 +134,35 @@
                             vm.$message.error('添加失败');
                         });
             },
-            finish:function () {
-                this.articles=[];
+            finish: function () {
+                Vue.set(this.progress[this.value],0,this.progress[this.value][0]+this.articles.length);
+                this.articles = [];
+            },
+            getUser: function () {
+                if (this.$store.state.user == null) {
+                    var vm = this;
+                    axios.get('user/get/' + sessionStorage.userId)
+                            .then(function (response) {
+                                vm.$store.commit('setUser', response.data);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                }
+            },
+            getProgress:function () {
+                var vm=this;
+                axios.get('article_list')
+                        .then(function (response) {
+                            for(var key in vm.progress){
+                                vm.progress[key]=response.data[key];
+                            }
+                        })
             }
+        },
+        mounted: function () {
+            this.getUser();
+            this.getProgress();
         }
     }
 </script>
@@ -148,6 +203,10 @@
     }
 
     .input {
-        max-width: 100px;
+        max-width: 300px;
+    }
+
+    .progress {
+        margin: 9px auto;
     }
 </style>

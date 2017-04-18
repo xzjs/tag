@@ -1,1 +1,666 @@
-webpackJsonp([0],{114:function(t,e,a){var r,n;a(123),r=a(117);var i=a(121);n=r=r||{},"object"!=typeof r.default&&"function"!=typeof r.default||(n=r=r.default),"function"==typeof n&&(n=n.options),n.render=i.render,n.staticRenderFns=i.staticRenderFns,n._scopeId="data-v-d3061624",t.exports=r},115:function(t,e){function a(t,e){for(var a=0;a<t.length;a++){var r=t[a],n=u[r.id];if(n){n.refs++;for(var i=0;i<n.parts.length;i++)n.parts[i](r.parts[i]);for(;i<r.parts.length;i++)n.parts.push(s(r.parts[i],e))}else{for(var o=[],i=0;i<r.parts.length;i++)o.push(s(r.parts[i],e));u[r.id]={id:r.id,refs:1,parts:o}}}}function r(t){for(var e=[],a={},r=0;r<t.length;r++){var n=t[r],i=n[0],o=n[1],s=n[2],l=n[3],c={css:o,media:s,sourceMap:l};a[i]?a[i].parts.push(c):e.push(a[i]={id:i,parts:[c]})}return e}function n(t,e){var a=p(),r=m[m.length-1];if("top"===t.insertAt)r?r.nextSibling?a.insertBefore(e,r.nextSibling):a.appendChild(e):a.insertBefore(e,a.firstChild),m.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");a.appendChild(e)}}function i(t){t.parentNode.removeChild(t);var e=m.indexOf(t);e>=0&&m.splice(e,1)}function o(t){var e=document.createElement("style");return e.type="text/css",n(t,e),e}function s(t,e){var a,r,n;if(e.singleton){var s=h++;a=v||(v=o(e)),r=l.bind(null,a,s,!1),n=l.bind(null,a,s,!0)}else a=o(e),r=c.bind(null,a),n=function(){i(a)};return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else n()}}function l(t,e,a,r){var n=a?"":r.css;if(t.styleSheet)t.styleSheet.cssText=g(e,n);else{var i=document.createTextNode(n),o=t.childNodes;o[e]&&t.removeChild(o[e]),o.length?t.insertBefore(i,o[e]):t.appendChild(i)}}function c(t,e){var a=e.css,r=e.media,n=e.sourceMap;if(r&&t.setAttribute("media",r),n&&(a+="\n/*# sourceURL="+n.sources[0]+" */",a+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(n))))+" */"),t.styleSheet)t.styleSheet.cssText=a;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(a))}}var u={},d=function(t){var e;return function(){return void 0===e&&(e=t.apply(this,arguments)),e}},f=d(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),p=d(function(){return document.head||document.getElementsByTagName("head")[0]}),v=null,h=0,m=[];t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");e=e||{},void 0===e.singleton&&(e.singleton=f()),void 0===e.insertAt&&(e.insertAt="bottom");var n=r(t);return a(n,e),function(t){for(var i=[],o=0;o<n.length;o++){var s=n[o],l=u[s.id];l.refs--,i.push(l)}if(t){a(r(t),e)}for(var o=0;o<i.length;o++){var l=i[o];if(0===l.refs){for(var c=0;c<l.parts.length;c++)l.parts[c]();delete u[l.id]}}}};var g=function(){var t=[];return function(e,a){return t[e]=a,t.filter(Boolean).join("\n")}}()},117:function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={data:function(){return{value:"leiphone.com",articles:[],key:null,word:null,tag:null}},computed:{tags:function(){return null!=this.word?this.word.tags:[]},user:function(){return{id:1}}},methods:{getArticles:function(){var t=this;axios.post("article_list",{source:this.value}).then(function(e){t.articles=e.data}).catch(function(t){})},getWord:function(){var t=this;axios.get("word/search/"+this.key).then(function(e){t.word=e.data}).catch(function(t){})},addTag:function(){var t=this;axios.post("tag",{tag:this.tag,user_id:this.user.id,word_id:this.word.id}).then(function(e){1==e.data?(t.word.tags.push({tag:t.tag}),t.tag=null):t.$message.error("添加失败")}).catch(function(e){t.$message.error("添加失败")})},finish:function(){this.articles=[]}}}},119:function(t,e,a){e=t.exports=a(33)(),e.push([t.i,'.text[data-v-d3061624]{font-size:14px}.item[data-v-d3061624]{padding:18px 0}.clearfix[data-v-d3061624]:after,.clearfix[data-v-d3061624]:before{display:table;content:""}.clearfix[data-v-d3061624]:after{clear:both}.box-card[data-v-d3061624]{width:480px;margin:0 auto}.list-group[data-v-d3061624]{max-height:500px;overflow-y:auto}.form[data-v-d3061624]{max-width:480px;padding:15px;margin:0 auto}.input[data-v-d3061624]{max-width:100px}',""])},121:function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("el-row",[a("el-col",{attrs:{span:12}},[a("el-card",{staticClass:"box-card"},[a("div",{staticClass:"clearfix",slot:"header"},[a("el-select",{attrs:{placeholder:"请选择"},model:{value:t.value,callback:function(e){t.value=e},expression:"value"}},[a("el-option",{attrs:{label:"雷锋网",value:"leiphone.com"}}),t._v(" "),a("el-option",{attrs:{label:"百度百家",value:"baijia.baidu.com"}}),t._v(" "),a("el-option",{attrs:{label:"开发者头条",value:"toutiao.io"}})],1),t._v(" "),a("el-button",{staticStyle:{float:"right"},attrs:{type:"primary"},on:{click:t.getArticles}},[t._v("领取任务")])],1),t._v(" "),a("div",{staticClass:"list-group"},t._l(t.articles,function(e,r){return a("div",{staticClass:"text item"},[a("span",[t._v(t._s(r+1))]),t._v(" "),a("a",{attrs:{href:e.href,target:"_blank"}},[t._v(t._s(e.title))])])})),t._v(" "),a("div",[a("el-button",{attrs:{type:"primary"},on:{click:t.finish}},[t._v("完成")])],1)])],1),t._v(" "),a("el-col",{attrs:{span:12}},[a("el-form",{staticClass:"form",attrs:{"label-width":"100px"}},[a("el-form-item",{attrs:{label:"主题词",required:""}},[a("el-input",{staticClass:"input",model:{value:t.key,callback:function(e){t.key=e},expression:"key"}}),t._v(" "),a("el-button",{attrs:{type:"primary"},on:{click:t.getWord}},[t._v("提交")])],1),t._v(" "),a("el-form-item",{attrs:{label:"已有标签"}},[a("div",t._l(t.tags,function(e){return a("el-tag",{attrs:{type:"primary"}},[t._v(t._s(e.tag))])}))]),t._v(" "),a("el-form-item",{attrs:{label:"标签添加",required:""}},[a("el-input",{staticClass:"input",model:{value:t.tag,callback:function(e){t.tag=e},expression:"tag"}}),t._v(" "),a("el-button",{attrs:{type:"primary"},on:{click:t.addTag}},[t._v("提交")])],1),t._v(" "),a("el-form-item",[a("a",{attrs:{target:"_blank",href:"https://www.baidu.com/s?wd="+t.key}},[t._v("百度搜索")]),t._v(" "),a("a",{attrs:{target:"_blank",href:"http://baike.baidu.com/item/"+t.key}},[t._v("百科搜索")])])],1)],1)],1)},staticRenderFns:[]}},123:function(t,e,a){var r=a(119);"string"==typeof r&&(r=[[t.i,r,""]]);a(115)(r,{});r.locals&&(t.exports=r.locals)}});
+webpackJsonp([0],{
+
+/***/ 114:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = {}
+
+/* styles */
+__webpack_require__(123)
+
+/* script */
+__vue_exports__ = __webpack_require__(117)
+
+/* template */
+var __vue_template__ = __webpack_require__(121)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "/Applications/MAMP/htdocs/tag/resources/assets/js/components/Main.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-d3061624"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d3061624", __vue_options__)
+  } else {
+    hotAPI.reload("data-v-d3061624", __vue_options__)
+  }
+})()}
+if (__vue_options__.functional) {console.error("[vue-loader] Main.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+
+/***/ 115:
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+var stylesInDom = {},
+	memoize = function(fn) {
+		var memo;
+		return function () {
+			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+			return memo;
+		};
+	},
+	isOldIE = memoize(function() {
+		return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+	}),
+	getHeadElement = memoize(function () {
+		return document.head || document.getElementsByTagName("head")[0];
+	}),
+	singletonElement = null,
+	singletonCounter = 0,
+	styleElementsInsertedAtTop = [];
+
+module.exports = function(list, options) {
+	if(typeof DEBUG !== "undefined" && DEBUG) {
+		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the bottom of <head>.
+	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+	var styles = listToStyles(list);
+	addStylesToDom(styles, options);
+
+	return function update(newList) {
+		var mayRemove = [];
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+		if(newList) {
+			var newStyles = listToStyles(newList);
+			addStylesToDom(newStyles, options);
+		}
+		for(var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+			if(domStyle.refs === 0) {
+				for(var j = 0; j < domStyle.parts.length; j++)
+					domStyle.parts[j]();
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+}
+
+function addStylesToDom(styles, options) {
+	for(var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+		if(domStyle) {
+			domStyle.refs++;
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles(list) {
+	var styles = [];
+	var newStyles = {};
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+		if(!newStyles[id])
+			styles.push(newStyles[id] = {id: id, parts: [part]});
+		else
+			newStyles[id].parts.push(part);
+	}
+	return styles;
+}
+
+function insertStyleElement(options, styleElement) {
+	var head = getHeadElement();
+	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+	if (options.insertAt === "top") {
+		if(!lastStyleElementInsertedAtTop) {
+			head.insertBefore(styleElement, head.firstChild);
+		} else if(lastStyleElementInsertedAtTop.nextSibling) {
+			head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			head.appendChild(styleElement);
+		}
+		styleElementsInsertedAtTop.push(styleElement);
+	} else if (options.insertAt === "bottom") {
+		head.appendChild(styleElement);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement(styleElement) {
+	styleElement.parentNode.removeChild(styleElement);
+	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+	if(idx >= 0) {
+		styleElementsInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement(options) {
+	var styleElement = document.createElement("style");
+	styleElement.type = "text/css";
+	insertStyleElement(options, styleElement);
+	return styleElement;
+}
+
+function addStyle(obj, options) {
+	var styleElement, update, remove;
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+		styleElement = singletonElement || (singletonElement = createStyleElement(options));
+		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+	} else {
+		styleElement = createStyleElement(options);
+		update = applyToTag.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle(newObj) {
+		if(newObj) {
+			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+				return;
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag(styleElement, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = styleElement.childNodes;
+		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+		if (childNodes.length) {
+			styleElement.insertBefore(cssNode, childNodes[index]);
+		} else {
+			styleElement.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag(styleElement, obj) {
+	var css = obj.css;
+	var media = obj.media;
+	var sourceMap = obj.sourceMap;
+
+	if (media) {
+		styleElement.setAttribute("media", media);
+	}
+
+	if (sourceMap) {
+		// https://developer.chrome.com/devtools/docs/javascript-debugging
+		// this makes source maps inside style tags work properly in Chrome
+		css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */';
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	if (styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = css;
+	} else {
+		while(styleElement.firstChild) {
+			styleElement.removeChild(styleElement.firstChild);
+		}
+		styleElement.appendChild(document.createTextNode(css));
+	}
+}
+
+
+/***/ }),
+
+/***/ 117:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            value: 'leiphone.com',
+            articles: [],
+            key: null,
+            word: null,
+            tag: null,
+            progress: {
+                'leiphone.com': [0, 1],
+                'baijia.baidu.com': [0, 1],
+                'toutiao.io': [0, 1]
+            }
+        };
+    },
+
+    computed: {
+        tags: function tags() {
+            if (this.word != null) {
+                return this.word.tags;
+            }
+            return [];
+        },
+        user: function user() {
+            return this.$store.state.user;
+        },
+        percent: function percent() {
+            var arr = [];
+            for (var key in this.progress) {
+                if (this.progress[key][1] == 0) {
+                    arr.push(0);
+                } else {
+                    arr.push(this.progress[key][0] / this.progress[key][1] * 100);
+                }
+            }
+            return arr;
+        }
+    },
+    methods: {
+        getArticles: function getArticles() {
+            var vm = this;
+            axios.post('article_list', { source: this.value }).then(function (response) {
+                vm.articles = response.data;
+                if (vm.articles.length == 0) {
+                    vm.$message.error('已经没有任务了');
+                }
+            }).catch(function (error) {
+                console.log(error);
+                vm.$message.error('拉取任务失败');
+            });
+        },
+        getWord: function getWord() {
+            var vm = this;
+            axios.get('word/search/' + this.key).then(function (response) {
+                vm.word = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addTag: function addTag() {
+            var vm = this;
+            axios.post('tag', { tag: this.tag, user_id: this.user.id, word_id: this.word.id }).then(function (response) {
+                console.log(response.data);
+                if (response.data == true) {
+                    vm.word.tags.push({ tag: vm.tag });
+                    vm.tag = null;
+                } else {
+                    vm.$message.error('添加失败');
+                }
+            }).catch(function (error) {
+                console.log(error);
+                vm.$message.error('添加失败');
+            });
+        },
+        finish: function finish() {
+            Vue.set(this.progress[this.value], 0, this.progress[this.value][0] + this.articles.length);
+            this.articles = [];
+        },
+        getUser: function getUser() {
+            if (this.$store.state.user == null) {
+                var vm = this;
+                axios.get('user/get/' + sessionStorage.userId).then(function (response) {
+                    vm.$store.commit('setUser', response.data);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        },
+        getProgress: function getProgress() {
+            var vm = this;
+            axios.get('article_list').then(function (response) {
+                for (var key in vm.progress) {
+                    vm.progress[key] = response.data[key];
+                }
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.getUser();
+        this.getProgress();
+    }
+});
+
+/***/ }),
+
+/***/ 119:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(34)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.text[data-v-d3061624] {\n    font-size: 14px;\n}\n.item[data-v-d3061624] {\n    padding: 18px 0;\n}\n.clearfix[data-v-d3061624]:before,\n.clearfix[data-v-d3061624]:after {\n    display: table;\n    content: \"\";\n}\n.clearfix[data-v-d3061624]:after {\n    clear: both\n}\n.box-card[data-v-d3061624] {\n    width: 480px;\n    margin: 0 auto;\n}\n.list-group[data-v-d3061624] {\n    max-height: 500px;\n    overflow-y: auto;\n}\n.form[data-v-d3061624] {\n    max-width: 480px;\n    padding: 15px;\n    margin: 0 auto;\n}\n.input[data-v-d3061624] {\n    max-width: 300px;\n}\n.progress[data-v-d3061624] {\n    margin: 9px auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 121:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('el-row', [_c('el-col', {
+    attrs: {
+      "span": 12
+    }
+  }, [_c('el-card', {
+    staticClass: "box-card"
+  }, [_c('div', {
+    staticClass: "clearfix",
+    slot: "header"
+  }, [_c('el-select', {
+    attrs: {
+      "placeholder": "请选择"
+    },
+    model: {
+      value: (_vm.value),
+      callback: function($$v) {
+        _vm.value = $$v
+      },
+      expression: "value"
+    }
+  }, [_c('el-option', {
+    attrs: {
+      "label": "雷锋网",
+      "value": "leiphone.com"
+    }
+  }), _vm._v(" "), _c('el-option', {
+    attrs: {
+      "label": "百度百家",
+      "value": "baijia.baidu.com"
+    }
+  }), _vm._v(" "), _c('el-option', {
+    attrs: {
+      "label": "开发者头条",
+      "value": "toutiao.io"
+    }
+  })], 1), _vm._v(" "), _c('el-button', {
+    staticStyle: {
+      "float": "right"
+    },
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.getArticles
+    }
+  }, [_vm._v("领取任务")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "list-group"
+  }, _vm._l((_vm.articles), function(item, index) {
+    return _c('div', {
+      staticClass: "text item"
+    }, [_c('span', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('a', {
+      attrs: {
+        "href": item.href,
+        "target": "_blank"
+      }
+    }, [_vm._v(_vm._s(item.title))])])
+  })), _vm._v(" "), _c('div', [_c('el-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.finish
+    }
+  }, [_vm._v("完成")])], 1)])], 1), _vm._v(" "), _c('el-col', {
+    attrs: {
+      "span": 12
+    }
+  }, [_c('el-form', {
+    staticClass: "form",
+    attrs: {
+      "label-width": "100px"
+    }
+  }, [_c('el-form-item', {
+    attrs: {
+      "label": "雷锋网"
+    }
+  }, [_c('el-progress', {
+    staticClass: "progress",
+    attrs: {
+      "text-inside": true,
+      "stroke-width": 18,
+      "percentage": _vm.percent[0]
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "百度百家"
+    }
+  }, [_c('el-progress', {
+    staticClass: "progress",
+    attrs: {
+      "text-inside": true,
+      "stroke-width": 18,
+      "percentage": _vm.percent[1]
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "开发者头条"
+    }
+  }, [_c('el-progress', {
+    staticClass: "progress",
+    attrs: {
+      "text-inside": true,
+      "stroke-width": 18,
+      "percentage": _vm.percent[2]
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "主题词",
+      "required": ""
+    }
+  }, [_c('el-input', {
+    staticClass: "input",
+    model: {
+      value: (_vm.key),
+      callback: function($$v) {
+        _vm.key = $$v
+      },
+      expression: "key"
+    }
+  }), _vm._v(" "), _c('el-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.getWord
+    }
+  }, [_vm._v("提交")])], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "已有标签"
+    }
+  }, [_c('div', _vm._l((_vm.tags), function(item) {
+    return _c('el-tag', {
+      attrs: {
+        "type": "primary"
+      }
+    }, [_vm._v(_vm._s(item.tag))])
+  }))]), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "标签添加",
+      "required": ""
+    }
+  }, [_c('el-input', {
+    staticClass: "input",
+    model: {
+      value: (_vm.tag),
+      callback: function($$v) {
+        _vm.tag = $$v
+      },
+      expression: "tag"
+    }
+  }), _vm._v(" "), _c('el-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.addTag
+    }
+  }, [_vm._v("提交")])], 1), _vm._v(" "), _c('el-form-item', [_c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://www.baidu.com/s?wd=' + _vm.key
+    }
+  }, [_vm._v("百度搜索")]), _vm._v(" "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'http://baike.baidu.com/item/' + _vm.key
+    }
+  }, [_vm._v("百科搜索")])])], 1)], 1)], 1)
+},staticRenderFns: []}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d3061624", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 123:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(119);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(115)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-d3061624&scoped=true!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-d3061624&scoped=true!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ })
+
+});

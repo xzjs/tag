@@ -14,7 +14,14 @@ class ArticleListController extends Controller
      */
     public function index()
     {
-        //
+        $arr=["leiphone.com",'baijia.baidu.com','toutiao.io'];
+        $result=[];
+        foreach ($arr as $value) {
+            $total=Article::where('source',$value)->count();
+            $finish=Article::where('is_read',true)->where('source',$value)->count();
+            $result[$value]=[$finish,$total];
+        }
+        return response()->json($result);
     }
 
     /**

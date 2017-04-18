@@ -27,7 +27,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=> {
     if (to.fullPath == '/main') {
-        if (store.state.user == null) {
+        if(sessionStorage.userId==null){
             next('/login');
         }
     }

@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::post('user/login','UserController@login');
+Route::get('user/get/{id}','UserController@getUser');
 
 Route::resource('article_list','ArticleListController');
 

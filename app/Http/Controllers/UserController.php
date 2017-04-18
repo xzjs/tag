@@ -20,4 +20,14 @@ class UserController extends Controller
             return response('false');
         }
     }
+
+    /**
+     * 获取user
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUser($id){
+        $user=User::find($id);
+        return response()->json($user);
+    }
 }

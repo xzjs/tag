@@ -42,6 +42,7 @@
                                     console.log(response.data);
                                     if (response.data != false) {
                                         vm.$store.commit('setUser',response.data);
+                                        sessionStorage.userId=response.data.id;
                                         vm.$router.push('main');
                                     } else {
                                         vm.$message.error('登录失败，用户名或密码错误');
