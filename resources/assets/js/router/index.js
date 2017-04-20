@@ -6,6 +6,7 @@ import App from '../App.vue';
 
 const Login = resolve=>require(['../components/Login'], resolve);
 const Main = resolve=>require(['../components/Main'], resolve);
+const Words=resolve=>require(['../components/Words'],resolve);
 
 export default [{
     path: '/',
@@ -22,6 +23,10 @@ export default [{
         {
             path: '/main',
             component:Main
+        },
+        {
+            path:'/words',
+            component:Words
         }
     ]
 }]

@@ -14,7 +14,8 @@ class WordController extends Controller
      */
     public function index()
     {
-        //
+        $words=Word::with('tags')->get();
+        return response()->json($words);
     }
 
     /**
