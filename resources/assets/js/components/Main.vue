@@ -23,6 +23,9 @@
         </el-col>
         <el-col :span="12">
             <el-form label-width="100px" class="form">
+                <el-form-item label="查看已标注词">
+                    <router-link to="words">查看已标注词</router-link>
+                </el-form-item>
                 <el-form-item label="雷锋网">
                     <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[0]" class="progress"></el-progress>
                 </el-form-item>
