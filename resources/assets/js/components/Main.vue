@@ -27,13 +27,16 @@
                     <router-link to="words">查看已标注词</router-link>
                 </el-form-item>
                 <el-form-item label="雷锋网">
-                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[0]" class="progress"></el-progress>
+                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[0]"
+                                 class="progress"></el-progress>
                 </el-form-item>
                 <el-form-item label="百度百家">
-                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[1]" class="progress"></el-progress>
+                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[1]"
+                                 class="progress"></el-progress>
                 </el-form-item>
                 <el-form-item label="开发者头条">
-                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[2]" class="progress"></el-progress>
+                    <el-progress :text-inside="true" :stroke-width="18" :percentage="percent[2]"
+                                 class="progress"></el-progress>
                 </el-form-item>
                 <el-form-item label="主题词" required>
                     <el-input class="input" v-model="key"></el-input>
@@ -67,9 +70,9 @@
                 word: null,
                 tag: null,
                 progress: {
-                    'leiphone.com': [0,1],
-                    'baijia.baidu.com': [0,1],
-                    'toutiao.io': [0,1]
+                    'leiphone.com': [0, 1],
+                    'baijia.baidu.com': [0, 1],
+                    'toutiao.io': [0, 1]
                 }
             }
         },
@@ -83,13 +86,13 @@
             user: function () {
                 return this.$store.state.user;
             },
-            percent:function () {
-                var arr=[];
-                for(var key in this.progress){
-                    if(this.progress[key][1]==0){
+            percent: function () {
+                var arr = [];
+                for (var key in this.progress) {
+                    if (this.progress[key][1] == 0) {
                         arr.push(0);
-                    }else{
-                        arr.push(this.progress[key][0]/this.progress[key][1]*100);
+                    } else {
+                        arr.push(this.progress[key][0] / this.progress[key][1] * 100);
                     }
                 }
                 return arr;
@@ -101,7 +104,7 @@
                 axios.post('article_list', {source: this.value})
                         .then(function (response) {
                             vm.articles = response.data;
-                            if(vm.articles.length==0){
+                            if (vm.articles.length == 0) {
                                 vm.$message.error('已经没有任务了');
                             }
                         })
@@ -112,7 +115,7 @@
             },
             getWord: function () {
                 var vm = this;
-                axios.get('word/search/' + this.key)
+                axios.post('word/search', {word: this.key})
                         .then(function (response) {
                             vm.word = response.data;
                         })
@@ -138,7 +141,7 @@
                         });
             },
             finish: function () {
-                Vue.set(this.progress[this.value],0,this.progress[this.value][0]+this.articles.length);
+                Vue.set(this.progress[this.value], 0, this.progress[this.value][0] + this.articles.length);
                 this.articles = [];
             },
             getUser: function () {
@@ -153,12 +156,12 @@
                             })
                 }
             },
-            getProgress:function () {
-                var vm=this;
+            getProgress: function () {
+                var vm = this;
                 axios.get('article_list')
                         .then(function (response) {
-                            for(var key in vm.progress){
-                                vm.progress[key]=response.data[key];
+                            for (var key in vm.progress) {
+                                vm.progress[key] = response.data[key];
                             }
                         })
             }

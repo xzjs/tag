@@ -85,12 +85,11 @@ class WordController extends Controller
     }
 
     /**
-     * 查询
-     * @param $word
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function search($word){
-        $_word=Word::with('tags')->firstOrCreate(['content'=>$word]);
+    public function search(Request $request){
+        $_word=Word::with('tags')->firstOrCreate(['content'=>$request->word]);
         return response()->json($_word);
     }
 }

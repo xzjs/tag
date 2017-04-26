@@ -20,7 +20,7 @@ Route::get('user/get/{id}','UserController@getUser');
 
 Route::resource('article_list','ArticleListController');
 
-Route::get('word/search/{word}', 'WordController@search');
+Route::post('word/search', 'WordController@search');
 Route::resource('word','WordController');
 
 Route::resource('tag','TagController');
