@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class WordController extends Controller
 {
@@ -14,7 +15,7 @@ class WordController extends Controller
      */
     public function index()
     {
-        $words=Word::with('tags')->get();
+        $words=Word::with('tags')->paginate(20);
         return response()->json($words);
     }
 
